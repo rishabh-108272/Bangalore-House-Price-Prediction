@@ -32,17 +32,17 @@ def load_saved_artifacts():
     global __data_columns
     global __locations
     
-    with open("../model/Columns.json","r") as f:
+    with open("./model/Columns.json","r") as f:
         __data_columns=json.load(f)['data_columns']
         __locations=__data_columns[3:]
     global __model   
-    with open("../model/bangalore_home_prices_model.pickle","rb") as f:
+    with open("./model/bangalore_home_prices_model.pickle","rb") as f:
         __model=pickle.load(f)
     
 
 if __name__=='__main__':
     load_saved_artifacts()
-    print(get_location_names())
-    print("Rs.",get_estimated_price('1st Phase JP Nagar',1000,3,3),"lakh")
-    print("Rs.",get_estimated_price('1st Phase JP Nagar',1000,2,2),"lakh")
+    # print(get_location_names())
+    # print("Rs.",get_estimated_price('1st Phase JP Nagar',1000,3,3),"lakh")
+    # print("Rs.",get_estimated_price('1st Phase JP Nagar',1000,2,2),"lakh")
     
