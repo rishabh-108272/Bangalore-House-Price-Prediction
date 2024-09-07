@@ -1,26 +1,30 @@
-from flask import Flask,request, jsonify
+import streamlit as st
 import util
-app=Flask(__name__)
 
-@app.route('/get_location_names')
 
-def get_location_names():
-    response=jsonify({
-        'locations':util.get_location_names()
-    })
-    response.headers.add('Access-Control-Allow-Origin','*')
-    return response
+util.load_saved_artifacts()
 
-@app.route('/predict_home_price',methods=['POST'])
 
-def predict_home_price():
-    total_sqft=float(request.form['total_sqft'])
-    location=request.form['location']
-    bhk=int(request.form['bhk'])
-    bath=int(request.form['bath'])
-    response=jsonify({
-        'estimated_price':util.get_estimated_price(location,total_sqft,bhk,bath)
-    })
-    response.headers.add('Access-Control-Allow-Origin','*')
-    return response
+st.title('Home Price Prediction')
 
+def main():
+   
+    st.header('Enter the details:')
+
+    
+    
+    total_sqft = st.number_input('Total Square Feet', min_value=0.0)
+    bhk = st.selectbox('BHK', [1, 2, 3, 4, 5])
+    bath = st.selectbox('Bathrooms', [1, 2, 3, 4])
+    location = st.selectbox('Select Location', util.get_location_names())
+
+    # Button to trigger prediction
+    if st.button('Predict Home Price'):
+        # Get the estimated price using the util function
+        estimated_price = util.get_estimated_price(location.lower(), total_sqft, bhk, bath)
+    
+        # Display the result
+        st.success(f'Estimated Home Price: {estimated_price} Lakh')
+
+if __name__ == "__main__":
+    main()
