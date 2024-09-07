@@ -18,12 +18,12 @@ def main():
     bath = st.selectbox('Bathrooms', [1, 2, 3, 4])
     location = st.selectbox('Select Location', util.get_location_names())
 
-    # Button to trigger prediction
+    
     if st.button('Predict Home Price'):
-        # Get the estimated price using the util function
+       
         estimated_price = util.get_estimated_price(location.lower(), total_sqft, bhk, bath)
     
-        # Display the result
+        
         st.success(f'Estimated Home Price: {estimated_price} Lakh')
 
 if __name__ == "__main__":
