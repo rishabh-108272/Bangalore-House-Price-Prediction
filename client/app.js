@@ -18,7 +18,7 @@ function estimatePrice(){
     var location=document.getElementById('uilocations');
     var res=document.getElementById('result');
 
-    var url="http://127.0.0.1:5000/predict_home_price";
+    var url="http://127.0.0.1:8080/predict_home_price";
 
     // var url="/api/predict_home_price";
 
@@ -37,7 +37,7 @@ function estimatePrice(){
 
 function onPageLoad(){
     console.log('document loaded');
-    var url="http://127.0.0.1:5000/get_location_names";
+    var url="http://127.0.0.1:8080/get_location_names";
 
     // var url="api/get_location_names";
     $.get(url,function(data,status){
